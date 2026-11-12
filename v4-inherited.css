@@ -65,7 +65,6 @@ dialog[data-flow="BOOK"]{width:min(520px,calc(100% - 26px))}dialog[data-flow="BO
 .author-article p { margin-block: .85em; line-height: 1.6; }
 .author-article .article-origin { font-size: 1rem; }
 
-.native-fallback{display:block}
 @font-face{font-family:"Cormorant Garamond";src:url("assets/fonts/CormorantGaramond-600.ttf") format("truetype");font-weight:600;font-display:swap}
 @font-face{font-family:Manrope;src:url("assets/fonts/Manrope-400.ttf") format("truetype");font-weight:400;font-display:swap}
 @font-face{font-family:Manrope;src:url("assets/fonts/Manrope-600.ttf") format("truetype");font-weight:600 900;font-display:swap}
