@@ -96,7 +96,7 @@ body { margin:0; color:var(--text); background:var(--cream); font:400 var(--read
 #HM_WHY .why-list>div::before,#HM_WHY .why-list>div::after {content:none}
 #HM_WHY .why-list h3 {font:600 var(--h3) var(--display);min-height:0;max-width:none;color:var(--heading);margin:0;text-align:left}
 #HM_WHY .why-list p {font:400 16px/25px var(--body);text-align:left;margin:0}
-#HM04.section {padding:72px 0;background:linear-gradient(100deg,#482d447a,#482d4445),url(assets/materials/marble-plum.webp) center 45%/cover;color:var(--cream)}
+#HM04.section {padding:72px 0;background:linear-gradient(#482d442e,#482d442e),url(assets/materials/marble-plum.webp) center 45%/cover;color:var(--cream)}
 #HM04 .v2-path {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 32px;margin:40px 0 0;padding:0;list-style:none}
 #HM04 .v2-path li {position:relative;display:grid;grid-row:span 3;grid-template-rows:subgrid;gap:12px;padding:12px 0 0;margin:0;border:0;border-top:1px solid #f9f4ed73;background:none}
 #HM04 .v2-path li::before {content:'';display:block;position:absolute;inset:-2px auto auto 0;width:4px;height:4px;border-radius:50%;background:var(--cream)}
