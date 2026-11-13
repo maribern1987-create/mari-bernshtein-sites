@@ -7,28 +7,45 @@
   const chevron = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
   const videoCopy = {
     IMG_6973: ['Сепарация и свои приоритеты', 'После работы с сепарацией стало легче выбирать своё и ставить личные желания на первое место.'],
-    IMG_6977: ['Учиться выражать чувства', 'Постепенно учится замечать и выражать чувства; вместе с этим замечает больше сил на привычные дела.'],
+    IMG_6977: ['Учиться выражать чувства', 'Клиентка учится замечать и выражать чувства и рассказывает, что у неё стало больше сил на привычные дела.'],
     IMG_6978: ['Спокойствие без осуждения', 'На встречах спокойно говорить о сложном: не возникает страха осуждения, есть возможность обратиться за помощью.'],
     IMG_6970: ['Свои чувства и ценности', 'Лучше понимает свои чувства и ценности, принимает себя и находит способы поддерживать себя между встречами.'],
     IMG_6972: ['Поддержка в семейной ситуации', 'Делится благодарностью за помощь в семейной ситуации и уверенностью в решении обратиться к выбранному психологу.'],
-    IMG_6974: ['Разговор о главном', 'Чтобы получить точный отклик, порой достаточно обозначить главное; долгие объяснения не всегда нужны.'],
-    IMG_6979: ['Внутренний конфликт в отношениях', 'В образной работе внутренний конфликт в отношениях сменяется взаимодействием; после сессии замечает перемены.'],
+    IMG_6974: ['Разговор о главном', 'Клиентка рассказывает о точном отклике и возможности говорить о главном без долгих объяснений.'],
+    IMG_6979: ['Внутренний конфликт в отношениях', 'Клиентка описывает образную работу с конфликтом в отношениях и перемены, которые заметила после встречи.'],
     IMG_6980: ['Знакомство с образной работой', 'Во время визуализации удивилась возможностям своего воображения; после встречи остались темы для самостоятельных размышлений.'],
     'unique-20261105': ['Контроль и доверие к себе', 'В работе с сильными чувствами смогла выдохнуть, ослабить контроль и почувствовать больше доверия к себе.']
   };
   const textCopy = [
     ['photo_2025-03-12_20-57-15.webp','Уверенность и свои решения','За последние несколько дней я успела заметить, что уже могу смелее высказывать своё мнение на работе и даже решилась записаться на новые курсы.'],
     ['photo_2024-12-17_16-53-44.webp','Ближе к себе','Отшелушивается что-то и каждый такой шаг приближает к самой себе настоящей.'],
-    ['photo_2026-02-11_18-18-54.webp','От страха к интересу','Получилось прожить много тревожащих меня состояний и выйти из состояния «страха жить жизнь и делать выборы» в ощущение интереса к этому процессу и азарта.']
+    ['photo_2026-02-11_18-18-54.webp','От страха к интересу','Получилось прожить много тревожащих меня состояний и выйти из состояния „страха жить жизнь и делать выборы“ в ощущение интереса к этому процессу и азарта.']
   ];
+  /* One immutable interface model for HM06 and A02. Author articles are outside this component. */
+  const priceModel=Object.freeze([
+    Object.freeze({sessions:1,title:'Разовая сессия',term:'Одна встреча',description:'Первая встреча или отдельная сессия.',price:6000}),
+    Object.freeze({sessions:5,title:'5 сессий',term:'Ориентир по длительности работы: до 3 месяцев',description:'Несколько встреч в рамках текущей работы.',price:28000}),
+    Object.freeze({sessions:10,title:'10 сессий',term:'Ориентир по длительности работы: до 6 месяцев',description:'Продолжение регулярной работы.',price:51000}),
+    Object.freeze({sessions:25,title:'25 сессий',term:'Ориентир по длительности работы: до 12 месяцев',description:'Длительная регулярная работа.',price:115000})
+  ]);
+  const priceNote='Количество встреч и необходимость продолжения обсуждаем по ходу работы.';
+  const priceAuthorNote='Пакет — это не только экономия. Это ритм, глубина и меньше шансов сбежать с процесса в момент сопротивления.';
+  const rubles=n=>String(n).replace(/\B(?=(\d{3})+(?!\d))/g,'\u00a0')+'\u00a0₽';
+  function priceMarkup(){return '<table class="format-table"><caption class="sr">Стоимость встреч и пакетов; сравнение с разовыми встречами по 6 000 ₽</caption><thead><tr><th scope="col">Формат</th><th scope="col">Для чего подходит</th><th scope="col">Стоимость</th></tr></thead><tbody>'+priceModel.map(x=>`<tr><th scope="row"><span class="format-name">${x.title}</span><span class="format-term">${x.term}</span></th><td class="format-purpose">${x.description}</td><td class="format-price">${x.sessions>1?`<span class="separate-price">По отдельности: ${rubles(x.sessions*6000)}</span>`:''}<strong>${rubles(x.price)}</strong>${x.sessions>1?`<span class="package-saving">Экономия ${rubles(x.sessions*6000-x.price)}</span>`:''}</td></tr>`).join('')+'</tbody></table><p class="v6-price-note">'+priceNote+'</p><p class="v7-price-author-note">'+priceAuthorNote+'</p>';}
+  window.V7Pricing=Object.freeze({rows:priceModel,render:priceMarkup,note:priceNote,authorNote:priceAuthorNote});
   const setText = (el, text) => { if (el && el.textContent !== text) el.textContent = text; };
   const link = (id,text) => `<a class="v4-text-action" href="#${id}" data-page="${id}">${text}${arrow}</a>`;
   const book = text => `<a class="button primary" href="#native-contact" data-form="BOOK">${text}</a>`;
   const init = (d,id,fn) => { const s=d.getElementById(id); if (!s || s.dataset.v4Body) return; if(fn(s)!==false)s.dataset.v4Body='true'; };
   window.applyV4Body = function(d = document) {
+    if(!d.getElementById('HM01'))d.querySelectorAll('.subpage .package-sheet').forEach(host=>{
+      if(host.closest('.author-article'))return;
+      host.classList.add('v7-pricing-interface');
+      if(!host.dataset.v7Pricing){host.dataset.v7Pricing='true';host.innerHTML=priceMarkup();}
+    });
     if(!window.__v6BodyErrors){window.__v6BodyErrors=true;d.addEventListener('error',e=>{
       if(!e.target.matches?.('#HM_SESSION iframe'))return;
-      const host=d.querySelector('.v4-session-media');if(host&&!host.querySelector('.v6-session-error'))host.insertAdjacentHTML('beforeend','<p class="v6-session-error" role="status">Если видео не загружается, откройте его во ВКонтакте.</p>');
+      const hint=d.querySelector('.v7-session-fallback');if(hint)hint.setAttribute('role','status');
     },true);}
     const archiveGrid=d.querySelector('.v3-review-archive-grid');
     if(archiveGrid&&!d.querySelector('.v6-review-filter')){
@@ -81,8 +98,7 @@
       const film=right.querySelector('.session-film'); film.classList.add('v4-session-film');
       film.querySelector('.v2-film-title')?.remove();
       right.querySelectorAll('.v3-session-fallback,.session-video-fallback,.v2-film-caption,.session-reading').forEach(e=>e.remove());
-      film.insertAdjacentHTML('afterend',`<p class="v4-media-caption">Видео о первой встрече · 18:30</p><a class="v4-text-action v4-session-external" href="https://vkvideo.ru/video822555244_456239197" target="_blank" rel="noopener noreferrer">Открыть во ВКонтакте${external}</a><div class="v4-session-actions">${book('Записаться на первую сессию')}${link('H23','Прочитать о первой встрече')}</div>`);
-      const actions=right.querySelector('.v4-session-actions');s.querySelector('.v4-session-columns').after(actions);
+      film.insertAdjacentHTML('afterend',`<p class="v4-media-caption">Видео о первой встрече · 18:30</p><p class="v7-session-fallback"><span>Если видео не загружается, </span><a class="v4-text-action v4-session-external" href="https://vkvideo.ru/video822555244_456239197" target="_blank" rel="noopener noreferrer">откройте его во ВКонтакте${external}</a></p><div class="v4-session-actions">${book('Записаться на первую сессию')}${link('H23','Прочитать о первой встрече')}</div>`);
     });
     init(d,'HM05',s=>{
       s.classList.add('v4-methods');
@@ -99,8 +115,7 @@
     });
     init(d,'HM06',s=>{
       s.classList.add('v4-prices');const inside=s.querySelector('.inside'),table=inside.querySelector('.package-sheet');
-      const purposes=['Первая встреча или отдельная сессия.','Несколько встреч в рамках текущей работы.','Продолжение регулярной работы.','Длительная регулярная работа.'];
-      table.querySelectorAll('.format-purpose').forEach((e,i)=>setText(e,purposes[i]));setText(table.querySelector('thead th'),'Формат');table.querySelectorAll('.separate-price').forEach(e=>e.insertAdjacentHTML('afterbegin','<span class="v6-comparison-label">Разовые встречи</span>'));table.insertAdjacentHTML('beforeend','<p class="v6-price-note">Количество встреч и необходимость продолжения обсуждаем по ходу работы.</p>');
+      if(!table.dataset.v7Pricing){table.innerHTML=priceMarkup();table.dataset.v7Pricing='true';}
       const heading=inside.querySelector('h2');const grid=d.createElement('div');grid.className='v4-price-columns';
       grid.innerHTML='<div class="v4-price-intro"><p>Одна встреча длится 90 минут. Онлайн и в кабинете в Санкт-Петербурге — одинаковая стоимость.</p><p>Можно начать с одной встречи. Пакет не обязателен.</p>'+book('Записаться на сессию')+link('A02','Стоимость и условия')+'</div>';
       grid.append(table);inside.replaceChildren(heading,grid);
