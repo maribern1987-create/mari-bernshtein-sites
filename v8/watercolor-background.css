@@ -1,0 +1,109 @@
+/* V8 watercolor background: real user supplied artwork, preserved as optimized WebP. */
+body.concept-mari:has(.main > #HM01) {
+  --watercolor-ink: #352c35;
+  --watercolor-muted: #574b55;
+  --watercolor-paper: rgba(255, 250, 246, .76);
+  color: var(--watercolor-ink);
+  background-color: #f8f1ed;
+  background-image: url("assets/watercolor-page-cycle.webp");
+  background-position: center top;
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-attachment: scroll;
+}
+body.concept-mari:has(.main > #HM01) .main { background: transparent !important; }
+body.concept-mari:has(.main > #HM01) .main > .section {
+  background: transparent !important;
+  color: var(--watercolor-ink);
+}
+body.concept-mari:has(.main > #HM01) .main > #HM01 { padding: 0; border-bottom-color: rgba(117, 91, 107, .24); }
+body.concept-mari:has(.main > #HM01) #HM01 .mari-hero {
+  background: url("assets/watercolor-hero.webp") center 34% / cover no-repeat;
+}
+body.concept-mari:has(.main > #HM01) #HM01 .principles {
+  background: var(--watercolor-paper);
+  border-color: rgba(117, 91, 107, .25);
+  color: var(--watercolor-ink);
+}
+/* Remove the former dark full-width bands while keeping media, cards and their layouts. */
+body.concept-mari:has(.main > #HM01) .main :is(#HM03, #HM05, #HM06, #HM07_VIDEO, #HM10, #HM11, #HM_WHY, #HM_SESSION, #HM_CREDENTIALS, #HM09) {
+  color: var(--watercolor-ink) !important;
+  background: transparent !important;
+}
+body.concept-mari:has(.main > #HM01) .main :is(#HM03, #HM05, #HM06, #HM07_VIDEO, #HM10, #HM11, #HM_WHY, #HM_SESSION, #HM_CREDENTIALS, #HM09)::before {
+  content: none !important;
+  display: none !important;
+}
+body.concept-mari:has(.main > #HM01) .main :is(#HM03, #HM05, #HM06, #HM07_VIDEO, #HM10, #HM11, #HM_WHY, #HM_SESSION, #HM_CREDENTIALS, #HM09) :is(p, li, h2, h3, strong, a:not(.button), .small, .muted) {
+  color: inherit;
+}
+/* Retain readable, opaque surfaces for the existing controls and content cards. */
+body.concept-mari:has(.main > #HM01) .main :is(.method, .credential-card, .appeal, .resource, .resource-preview, .session-grid > div, .price-table, .faq details, .topic-card) {
+  background-color: rgba(255, 250, 246, .92);
+}
+body.concept-mari:has(.main > #HM01) .main #HM03 .wire-player,
+body.concept-mari:has(.main > #HM01) .main #HM07_VIDEO .wire-player,
+body.concept-mari:has(.main > #HM01) .main .intro-frame .intro-play {
+  color: #fffaf5;
+}
+body.concept-mari:has(.main > #HM01) .main .section :is(.eyebrow, .small, .muted) { color: var(--watercolor-muted); }
+body.concept-mari:has(.main > #HM01) .footer {
+  color: var(--watercolor-ink);
+  background: rgba(255, 250, 246, .88) !important;
+  border-top-color: rgba(117, 91, 107, .28);
+}
+body.concept-mari:has(.main > #HM01) .footer a { color: inherit; }
+@media (max-width: 850px) {
+  body.concept-mari:has(.main > #HM01) {
+  --watercolor-ink: #352c35;
+  --watercolor-muted: #574b55;
+  --watercolor-paper: rgba(255, 250, 246, .76); background-size: 100% auto; }
+  body.concept-mari:has(.main > #HM01) #HM01 .mari-hero { background-position: center 20%; }
+}
+/* Reassign former light-on-dark section copy to dark ink on the new light ground. */
+body.concept-mari:has(.main > #HM01) .main :is(h1,h2,h3,p,li,strong,span,a:not(.button),.small,.muted) {
+  color: var(--watercolor-ink) !important;
+}
+/* These existing surfaces remain dark and keep their white foreground. */
+body.concept-mari:has(.main > #HM01) .main .topic-card :is(strong,span) { color: #fffaf5 !important; }
+body.concept-mari:has(.main > #HM01) .main :is(#HM03 .wire-player, #HM07_VIDEO .wire-player, .intro-play, #HM_WHY .appeal) :is(h1,h2,h3,p,li,strong,span,a:not(.button),.small,.muted) {
+  color: #fffaf5 !important;
+}
+body.concept-mari:has(.main > #HM01) .main #HM06 .format-table thead th { color: #fffaf5 !important; }
+body.concept-mari:has(.main > #HM01) .main #HM06 .format-table thead th :is(span,strong) { color: inherit !important; }
+/* Contrast for the dark topic tiles and the light footer introduced by this skin. */
+body.concept-mari:has(.main > #HM01) .main #HM02 .home-topic-grid > .topic-card,
+body.concept-mari:has(.main > #HM01) .main #HM02 .home-topic-grid > .topic-card :is(strong,span) {
+  color: #fffaf5 !important;
+}
+body.concept-mari:has(.main > #HM01) .footer :is(h2,h3,p,li,a,span,strong,.small,.muted) {
+  color: var(--watercolor-ink) !important;
+}
+/* Keep the inquiry card and method controls legible on the newly light page. */
+body.concept-mari:has(.main > #HM01) .main #HM11 .appeal {
+  background: rgba(255, 250, 246, .96) !important;
+  color: var(--watercolor-ink) !important;
+}
+body.concept-mari:has(.main > #HM01) .main #HM11 .appeal :is(h2,h3,p,span,strong,a:not(.button)) {
+  color: var(--watercolor-ink) !important;
+}
+body.concept-mari:has(.main > #HM01) .main #HM05 :is(a.button:not(.primary),button:not(.primary)) {
+  color: var(--watercolor-ink) !important;
+  border-color: #a58b99 !important;
+  background: rgba(255, 250, 246, .95) !important;
+  opacity: 1 !important;
+}
+/* FAQ rows used white foregrounds for the previous plum band. */
+body.concept-mari:has(.main > #HM01) .main #HM08 summary,
+body.concept-mari:has(.main > #HM01) .main #HM08 summary::after {
+  color: var(--watercolor-ink) !important;
+}
+body.concept-mari:has(.main > #HM01) .main #HM08 a.button.quiet {
+  color: var(--watercolor-ink) !important;
+  border-color: #a58b99 !important;
+  background: rgba(255, 250, 246, .95) !important;
+  opacity: 1 !important;
+}
+body.concept-mari:has(.main > #HM01) .main .section a.button:not(.primary):not([disabled]) {
+  opacity: 1 !important;
+}
