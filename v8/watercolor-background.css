@@ -253,17 +253,26 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   body.concept-mari #app:has(.home-scene) { --narrow-photo-height: 56.28vw; }
   .home-scene { --mobile-picture-height: var(--narrow-photo-height); }
   .home-scene .scene-top { flex-basis: var(--mobile-picture-height); }
+  .home-scene .scene-top::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("assets/watercolor-hero.webp") center top / 100% auto no-repeat;
+    mask-image: linear-gradient(90deg, transparent 22%, #0003 43%, black 65%),
+      linear-gradient(transparent, black clamp(25px, 7vw, 58px));
+    mask-composite: intersect;
+  }
   .home-scene .portrait-wrap img {
     mask: url("assets/mobile-portrait-mask.png") top center / 100% 100% no-repeat;
   }
   .home-scene .scene-top::after {
-    height: clamp(50px, 10.8vw, 76px);
-    background-image: url("assets/mobile-paper-wave.svg");
+    inset: 0;
+    height: auto;
+    /* Give the two washes room to rise at the edges of a narrow crop. */
+    background: url("assets/reference-paper-hero.webp") center bottom / 100% max(100%, 92vw) no-repeat;
+    mask-image: linear-gradient(transparent 53%, black 84%);
   }
-  /* Reuse the desktop paper wash at the foot of the photograph. */
-  .home-scene .portrait-wrap::after {
-    mask-image: linear-gradient(to top, black 0%, black 5%, transparent 22%);
-  }
+  .home-scene .portrait-wrap::after { content: none; }
   .home-scene .scene-paper {
     position: relative;
     margin-top: -2px;
@@ -278,7 +287,7 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
     /* The first leaves sit two fifths into the original 1836 × 857 painting. */
     --backdrop-width: max(100vw, calc(var(--backdrop-height) * 1836 / 857));
     height: var(--backdrop-height);
-    --backdrop-left: min(0px, calc(59vw - var(--backdrop-width) * .4));
+    --backdrop-left: min(0px, calc(54vw - var(--backdrop-width) * .4));
     background:
       linear-gradient(90deg, rgb(255 246 238 / 28%) 45%, rgb(255 246 238 / 16%) 58%, transparent 66%),
       radial-gradient(ellipse at 104% 38%, rgb(148 98 131 / 26%), transparent 47%),
@@ -490,6 +499,9 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
 }
 
 @media (min-width: 450px) and (max-width: 619px) {
+  .home-scene .scene-top::before {
+    background-position: center -5.5vw;
+  }
   body.concept-mari #app #HM01 .hero-story .actions {
     flex-direction: column;
     align-items: flex-start;
