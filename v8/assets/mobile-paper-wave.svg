@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 80" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="rose" x1="0" y1="0" x2=".1" y2="1">
+      <stop stop-color="#dec1c5" stop-opacity=".32"/>
+      <stop offset=".55" stop-color="#d9b8c3" stop-opacity=".66"/>
+      <stop offset="1" stop-color="#f5e5de" stop-opacity=".92"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#f3dfd9"/><stop offset=".65" stop-color="#f9ece5"/><stop offset="1" stop-color="#fbf1ea"/>
+    </linearGradient>
+    <filter id="soften" x="-5%" y="-25%" width="110%" height="160%"><feGaussianBlur stdDeviation="1.2 2.6"/></filter>
+  </defs>
+  <path fill="url(#rose)" filter="url(#soften)" d="M-6 8C68 57 122 67 212 52S331 50 387 59S520 82 606 11V87H-6Z"/>
+  <path fill="url(#paper)" d="M-6 32C66 73 124 69 211 59S326 54 395 66S521 78 606 35V87H-6Z"/>
+</svg>
