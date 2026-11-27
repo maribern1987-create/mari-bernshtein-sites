@@ -150,6 +150,13 @@ body.concept-mari #app:has(.home-scene) {
   flex: 0 0 var(--scene-height);
   overflow: hidden;
 }
+.home-scene .scene-top::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px;
+  height: clamp(31px, 6vw, 72px);
+  background: url("assets/hero-paper-wave.svg") center / 100% 100% no-repeat;
+}
 .home-scene .portrait-wrap {
   position: relative;
   width: var(--scene-width);
@@ -244,19 +251,24 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
 }
 @media (max-width: 900px) {
   body.concept-mari #app:has(.home-scene) { --narrow-photo-height: 56.28vw; }
-  .home-scene .scene-top { flex-basis: var(--narrow-photo-height); }
+  .home-scene { --mobile-picture-height: var(--narrow-photo-height); }
+  .home-scene .scene-top { flex-basis: var(--mobile-picture-height); }
+  .home-scene .portrait-wrap img {
+    mask: url("assets/mobile-portrait-mask.png") top center / 100% 100% no-repeat;
+  }
+  .home-scene .portrait-wrap::after { content: none; }
   .home-scene .scene-paper {
     position: relative;
-    margin-top: -14px;
-    mask-image: linear-gradient(transparent, #000 15px, #000 68%, transparent);
+    margin-top: -2px;
+    mask-image: linear-gradient(transparent, #000 3px, #000 68%, transparent);
   }
   .home-scene { padding-top: calc(var(--masthead-height) - 6px); }
   .home-scene::before {
     content: "";
     position: absolute;
     inset: 0 0 auto;
-    height: calc(var(--masthead-height) - 6px);
-    background: url("assets/hero-wall-upward.webp") var(--portrait-paint-position, 50%) bottom / var(--portrait-paint-width, 100%) auto no-repeat;
+    height: calc(var(--masthead-height) - 6px + var(--mobile-picture-height));
+    background: url("assets/mobile-full-watercolor.webp") center / 100% 100% no-repeat;
   }
 }
 /* At tablet widths keep the copy over the paper side of the portrait. */
@@ -422,7 +434,11 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
 
 /* Fit the painted scene to the actual copy height in narrow two-column windows. */
 @media (min-width: 450px) and (max-width: 734px) {
-  .home-scene { --portrait-paint-position: 43%; --portrait-paint-width: max(100%, calc(var(--compact-art-height, var(--narrow-photo-height)) * 1.777)); }
+  .home-scene {
+    --mobile-picture-height: var(--compact-art-height, var(--narrow-photo-height));
+    --portrait-paint-position: 43%;
+    --portrait-paint-width: max(100%, calc(var(--mobile-picture-height) * 1.777));
+  }
   .home-scene .scene-top {
     flex-basis: var(--compact-art-height, var(--narrow-photo-height));
   }
