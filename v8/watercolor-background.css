@@ -209,7 +209,7 @@ body.concept-mari #HM01 .principles {
   color: var(--watercolor-ink);
 }
 body.concept-mari #HM01 .principles li { border-color: #ac817558; }
-@media (min-width: 620px) {
+@media (min-width: 450px) {
   /* The signature ends 11px above the header edge. Share that space with the lower gap. */
   body.concept-mari #HM01 .hero-story { translate: 0 -5.5px; }
 }
@@ -230,7 +230,7 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   }
 }
 /* At tablet widths keep the copy over the paper side of the portrait. */
-@media (min-width: 620px) and (max-width: 900px) {
+@media (min-width: 450px) and (max-width: 900px) {
   body.concept-mari #HM01 .mari-hero {
     display: block;
     position: relative;
@@ -361,7 +361,7 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
     justify-self: stretch;
   }
 }
-@media (max-width: 619px) {
+@media (width < 450px) {
   body.concept-mari #HM01 .mari-hero {
     display: block;
     min-height: 0;
@@ -395,10 +395,137 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
     background: linear-gradient(#fbf1e9, transparent);
   }
 }
-@media (min-width: 620px) and (max-width: 780px) {
+@media (min-width: 450px) and (max-width: 780px) {
   body.concept-mari #app #HM01 .hero-story .actions > a,
   body.concept-mari #app #HM01 .hero-story .actions > button {
     padding-inline: 12px;
     font-size: 13px;
   }
+}
+
+/* Fit the painted scene to the actual copy height in narrow two-column windows. */
+@media (min-width: 450px) and (max-width: 734px) {
+  .home-scene .scene-top {
+    flex-basis: var(--compact-art-height, var(--scene-height));
+  }
+  .home-scene .portrait-wrap {
+    width: max(100%, calc(var(--compact-art-height, var(--scene-height)) * 2.10517));
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  body.concept-mari #app #HM01 .hero-story {
+    width: 62%;
+    padding: 21px 6px 21px clamp(15px, 3.3vw, 24px);
+  }
+  body.concept-mari #app #HM01 .hero-story h1 {
+    font-size: clamp(28px, 5.4vw, 37px);
+    line-height: 1.04;
+    margin: 0 0 12px;
+  }
+  body.concept-mari #app #HM01 .hero-story p {
+    font-size: 14px;
+    line-height: 1.45;
+    margin: 0 0 8px;
+  }
+  body.concept-mari #app #HM01 .hero-story .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  body.concept-mari #app #HM01 .hero-story .actions > * {
+    flex: none;
+    width: auto;
+    margin: 0;
+  }
+}
+
+@media (min-width: 450px) and (max-width: 619px) {
+  body.concept-mari #app #HM01 .hero-story .actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Preserve the first screen's geometry while a smaller navigation row is pinned. */
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header {
+  position: relative;
+  height: var(--masthead-height);
+  background: transparent;
+  pointer-events: none;
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .header-inner {
+  --signature-width: clamp(166px, 16vw, 208px);
+  position: fixed;
+  inset: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  min-height: 0;
+  grid-template: auto / minmax(0,1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 4px max(var(--mari-pad), calc((100% - 1440px) / 2));
+  pointer-events: auto;
+  background: rgb(252 243 239 / 88%);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgb(88 52 68 / 10%);
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature {
+  grid-area: 1 / 1;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  gap: clamp(10px, 1.4vw, 22px);
+  margin: 0;
+  container-type: normal;
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .logo {
+  flex: 0 0 var(--signature-width);
+  width: var(--signature-width);
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .header-profession {
+  width: auto;
+  font-size: clamp(10px,.78vw,12px);
+  line-height: 1.2;
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header :is(.header-book,#menu-toggle) {
+  min-height: 38px;
+  padding: 6px 12px;
+  align-self: center;
+}
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .header-book { grid-area: 1 / 2; }
+html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header #menu-toggle { grid-area: 1 / 3; }
+@media (max-width: 700px) {
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .header-inner {
+    --signature-width: clamp(132px, 27vw, 170px);
+    padding: 4px 10px;
+    gap: 6px;
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .header-profession {
+    display: block;
+    text-align: left;
+    white-space: normal;
+    font-size: 10px;
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] { display: none; }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .header-profession .profession-title { display: block; white-space: normal; }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header :is(.header-book,#menu-toggle) {
+    font-size: 13px;
+    padding-inline: 8px;
+  }
+}
+@media (max-width: 449px) {
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature {
+    flex-direction: column;
+    gap: 0;
+    align-items: flex-start;
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .logo { flex-basis: auto; }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .header-profession {
+    align-self: flex-start;
+    font-size: 9px;
+    letter-spacing: .015em;
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .header-profession .profession-title { display: inline; }
 }
