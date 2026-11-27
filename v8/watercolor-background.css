@@ -107,3 +107,24 @@ body.concept-mari:has(.main > #HM01) .main #HM08 a.button.quiet {
 body.concept-mari:has(.main > #HM01) .main .section a.button:not(.primary):not([disabled]) {
   opacity: 1 !important;
 }
+
+@media (min-width: 960px) {
+  body.concept-mari #HM01 .portrait-wrap::before { background: none; }
+  body.concept-mari #HM01 .portrait-wrap img {
+    mask-image: linear-gradient(to right, transparent, #000 24%, #000 85%, transparent);
+  }
+  body.concept-mari #HM01 .hero-inscription { background: none; }
+  body.concept-mari #HM01 .inscription-art {
+    filter: brightness(0) saturate(100%) invert(14%) sepia(23%) saturate(1200%) hue-rotate(264deg) brightness(92%);
+  }
+}
+
+body.concept-mari .intro-local-frame.has-film-poster .intro-local-play .play-symbol {
+  position: absolute;
+  left: 13%;
+  top: 69%;
+  width: clamp(44px, 5vw, 62px);
+  height: clamp(44px, 5vw, 62px);
+  color: #fffaf5 !important;
+  background: #46263fe8;
+}
