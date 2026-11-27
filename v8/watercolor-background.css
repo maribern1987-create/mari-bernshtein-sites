@@ -209,23 +209,14 @@ body.concept-mari #HM01 .principles {
   color: var(--watercolor-ink);
 }
 body.concept-mari #HM01 .principles li { border-color: #ac817558; }
-body.concept-mari #HM01 .hero-inscription { background: none; }
-@media (min-width: 960px) {
-  body.concept-mari #HM01 .inscription-art {
-    top: 29%;
-    right: 3%;
-    width: clamp(104px, 12vw, 192px);
-    transform: rotate(-5deg);
-    filter: brightness(0) saturate(100%) invert(14%) sepia(23%) saturate(1200%) hue-rotate(264deg) brightness(92%);
-  }
+@media (min-width: 620px) {
+  /* The signature ends 11px above the header edge. Share that space with the lower gap. */
+  body.concept-mari #HM01 .hero-story { translate: 0 -5.5px; }
 }
 @media (min-width: 901px) {
-  body.concept-mari #HM01 .hero-story { padding-block: 16px; }
-}
-@media (min-width: 1100px) {
   body.concept-mari #HM01 .hero-story {
-    align-self: end;
-    padding-bottom: clamp(44px, 4.5vw, 72px);
+    align-self: center;
+    padding-block: 10px;
   }
 }
 @media (max-width: 900px) {
@@ -235,18 +226,42 @@ body.concept-mari #HM01 .hero-inscription { background: none; }
     position: absolute;
     inset: 0 0 auto;
     height: calc(var(--masthead-height) - 6px);
-    background: linear-gradient(to bottom, #fcf2eada, #fcf2eaab 64%, transparent),
-      url("assets/reference-masthead.webp") center / 100% 100%;
+    background: linear-gradient(to bottom, #fcf2eaf5, #fcf2eadd 78%, #fcf2eac9);
   }
+}
+/* At tablet widths keep the copy over the paper side of the portrait. */
+@media (min-width: 620px) and (max-width: 900px) {
   body.concept-mari #HM01 .mari-hero {
     display: block;
-    min-height: 0;
-    padding: calc(var(--scene-height) - 6px) 0 0;
+    position: relative;
+    min-height: calc(var(--scene-height) - 6px);
+    padding: 0;
   }
   body.concept-mari #HM01 .hero-story {
-    display: block;
-    padding: 12px var(--mari-pad) 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: auto;
+    width: 61%;
     max-width: 720px;
+    min-height: calc(var(--scene-height) - 6px);
+    padding: 10px clamp(14px, 2.4vw, 24px) 10px var(--mari-pad);
+  }
+  body.concept-mari #HM01 .hero-story h1 {
+    font-size: clamp(36px, 5.2vw, 47px);
+    line-height: 1.02;
+    margin-bottom: 12px;
+  }
+  body.concept-mari #HM01 .hero-story p {
+    font-size: clamp(14px, 1.75vw, 15.5px);
+    line-height: 1.42;
+    margin-bottom: 9px;
+  }
+  body.concept-mari #HM01 .hero-story .actions {
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
   }
 }
 /* Keep the signature and both controls in the pale part of the photograph. */
@@ -301,17 +316,89 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
   color: var(--copper-line);
 }
 @media (max-width: 680px) {
+  body.concept-mari #app:has(.home-scene) {
+    --masthead-height: 108px;
+  }
   body.concept-mari #app:has(.home-scene) .site-header .header-inner {
-    --signature-width: clamp(250px, 43vw, 282px);
-    padding: 8px var(--mari-pad);
+    --signature-width: min(100%, 246px);
+    grid-template-columns: minmax(0, 1fr) 106px;
+    grid-template-rows: auto auto;
+    column-gap: 10px;
+    row-gap: 6px;
+    padding: 8px 12px;
+  }
+  body.concept-mari #app:has(.home-scene) .home-scene {
+    padding-top: calc(var(--masthead-height) - 6px);
+  }
+  body.concept-mari #app:has(.home-scene) .home-scene::before {
+    height: calc(var(--masthead-height) - 6px);
+  }
+  body.concept-mari #app:has(.home-scene) .site-header .mari-signature {
+    grid-area: 1 / 1 / 3 / 2;
+    width: var(--signature-width);
+    align-items: flex-start;
+    margin: 0;
+  }
+  body.concept-mari #app:has(.home-scene) .mari-signature .logo {
+    width: 100%;
+  }
+  body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+    align-self: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    white-space: normal;
+    text-align: center;
+    font-size: clamp(8px, 3.95cqi, 10px);
+    line-height: 1.2;
+  }
+  body.concept-mari #app:has(.home-scene) .site-header .header-book {
+    grid-area: 1 / 2;
+    justify-self: stretch;
+  }
+  body.concept-mari #app:has(.home-scene) .site-header #menu-toggle {
+    grid-area: 2 / 2;
+    justify-self: stretch;
   }
 }
-@media (max-width: 560px) {
-  body.concept-mari #app:has(.home-scene) .site-header .header-inner {
-    grid-template-columns: max-content max-content 1fr;
-    row-gap: 11px;
+@media (max-width: 619px) {
+  body.concept-mari #HM01 .mari-hero {
+    display: block;
+    min-height: 0;
+    padding: calc(var(--scene-height) - 6px) 0 0;
+    overflow: visible;
   }
-  body.concept-mari #app:has(.home-scene) .site-header .mari-signature { grid-area: 1 / 1 / 2 / -1; margin: 0; }
-  body.concept-mari #app:has(.home-scene) .site-header .header-book { grid-area: 2 / 1; }
-  body.concept-mari #app:has(.home-scene) .site-header #menu-toggle { grid-area: 2 / 2; }
+  body.concept-mari #HM01 .hero-story {
+    display: block;
+    position: relative;
+    order: initial;
+    max-width: 720px;
+    padding: 12px var(--mari-pad) 24px;
+  }
+}
+@media (min-width: 450px) and (max-width: 680px) {
+  body.concept-mari #app:has(.home-scene) .site-header .header-inner {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-rows: auto;
+  }
+  body.concept-mari #app:has(.home-scene) .site-header .mari-signature { grid-area: 1 / 1; }
+  body.concept-mari #app:has(.home-scene) .site-header #menu-toggle { grid-area: 1 / 3; }
+}
+
+@media (max-width: 900px) {
+  .home-scene .scene-top::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 10px;
+    z-index: 1;
+    background: linear-gradient(#fbf1e9, transparent);
+  }
+}
+@media (min-width: 620px) and (max-width: 780px) {
+  body.concept-mari #app #HM01 .hero-story .actions > a,
+  body.concept-mari #app #HM01 .hero-story .actions > button {
+    padding-inline: 12px;
+    font-size: 13px;
+  }
 }
