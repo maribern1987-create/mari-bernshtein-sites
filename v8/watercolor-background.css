@@ -252,7 +252,10 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
 @media (max-width: 900px) {
   body.concept-mari #app:has(.home-scene) { --narrow-photo-height: 56.28vw; }
   .home-scene { --mobile-picture-height: var(--narrow-photo-height); }
-  .home-scene .scene-top { flex-basis: var(--mobile-picture-height); }
+  .home-scene .scene-top {
+    flex-basis: var(--mobile-picture-height);
+    isolation: isolate;
+  }
   .home-scene .scene-top::before {
     content: "";
     position: absolute;
@@ -262,21 +265,29 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
       linear-gradient(transparent, black clamp(25px, 7vw, 58px));
     mask-composite: intersect;
   }
+  .home-scene .portrait-wrap { z-index: 1; }
   .home-scene .portrait-wrap img {
-    mask: url("assets/mobile-portrait-mask.png") top center / 100% 100% no-repeat;
+    mask: url("assets/mobile-portrait-mask-v2.png") top center / 100% 100% no-repeat;
   }
   .home-scene .scene-top::after {
-    inset: 0;
-    height: auto;
-    /* Give the two washes room to rise at the edges of a narrow crop. */
-    background: url("assets/reference-paper-hero.webp") center bottom / 100% max(100%, 92vw) no-repeat;
-    mask-image: linear-gradient(transparent 53%, black 84%);
+    z-index: 2;
+    inset: auto 0 -1px;
+    height: min(33%, clamp(70px, 16vw, 134px));
+    background: url("assets/mobile-reference-fold.svg") center bottom / 100% 100% no-repeat;
   }
   .home-scene .portrait-wrap::after { content: none; }
   .home-scene .scene-paper {
     position: relative;
     margin-top: -2px;
-    mask-image: linear-gradient(transparent, #000 3px, #000 68%, transparent);
+    mask-image: linear-gradient(#000 68%, transparent);
+    background: linear-gradient(90deg, #fcf2eb, #fdf3ec 45%, #fcf1eb 81%, #f8ebe4);
+  }
+  .home-scene .scene-paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("assets/reference-paper-body.webp") center top / 100% 100% no-repeat;
+    mask-image: linear-gradient(transparent, black 26px);
   }
   .home-scene { padding-top: calc(var(--masthead-height) - 6px); }
   .home-scene::before {

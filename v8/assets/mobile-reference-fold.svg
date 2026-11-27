@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 244 724 108" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="mauve" x1="0" x2="1" y1="0" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#dec7cb" stop-opacity=".76"/>
+      <stop offset=".18" stop-color="#eedcda" stop-opacity=".83"/>
+      <stop offset=".47" stop-color="#faf0e8" stop-opacity=".55"/>
+      <stop offset=".69" stop-color="#fbefe8" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#f6e9e3" stop-opacity=".85"/>
+    </linearGradient>
+    <linearGradient id="blush" x1="0" x2="0" y1="0" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#efdcda" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#f7e9e2" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="sheet" x1="0" x2="1" y1="0" y2="0" gradientUnits="objectBoundingBox">
+      <stop stop-color="#fcf2eb"/><stop offset=".45" stop-color="#fdf3ec"/>
+      <stop offset=".81" stop-color="#fcf1eb"/><stop offset="1" stop-color="#f8ebe4"/>
+    </linearGradient>
+    <filter id="feather" x="-.05" y="-.15" width="1.1" height="1.4">
+      <feGaussianBlur stdDeviation="1.2 2.6"/>
+    </filter>
+    <filter id="haze" x="-15%" y="-40%" width="130%" height="205%">
+      <feGaussianBlur stdDeviation="3 7"/>
+    </filter>
+    <linearGradient id="leftOnly"><stop offset=".45" stop-color="white"/><stop offset=".68" stop-color="black"/></linearGradient>
+    <mask id="left" maskUnits="userSpaceOnUse" x="-10" y="240" width="744" height="120"><rect x="-10" y="240" width="744" height="120" fill="url(#leftOnly)"/></mask>
+    <path id="front" d="M-8 337 C23 351 46 350 88 342 C154 337 192 323 272 319 C345 314 392 311 448 316 C503 318 542 327 585 325 C646 324 682 313 732 297 L732 359 H-8Z"/>
+    <path id="rear" d="M-8 251 C46 293 110 315 180 322 C243 328 287 319 356 314 C435 307 527 336 603 313 C656 298 697 271 732 251 V370 H-8Z"/>
+  </defs>
+  <!-- Coordinates follow the three overlapping sheets at the foot of the approved 724px reference. -->
+  <use href="#rear" fill="url(#mauve)" filter="url(#haze)"/>
+  <g mask="url(#left)">
+    <use href="#rear" fill="url(#mauve)" opacity=".68"/>
+    <path d="M-8 292 C51 317 103 329 164 324 C216 323 251 314 308 315 C393 309 476 320 548 322 C620 325 686 300 732 281 V359 H-8Z" fill="url(#blush)" opacity=".6"/>
+  </g>
+  <use href="#front" fill="url(#sheet)" filter="url(#haze)"/>
+  <use href="#front" fill="url(#sheet)" filter="url(#feather)"/>
+  <use href="#front" fill="url(#sheet)"/>
+</svg>
