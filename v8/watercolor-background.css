@@ -148,17 +148,24 @@ body.concept-mari #app:has(.home-scene) {
 .home-scene .scene-top {
   position: relative;
   z-index: 1;
+  min-height: 0;
   flex: 0 0 var(--scene-height);
 }
-.home-scene .scene-top::after {
+.home-scene .scene-top::after, .home-scene .scene-wash {
   content: "";
   position: absolute;
-  --paper-lap: clamp(7px, 1.85vw, 30px);
+  /* Anchor row 344 of the 724px artwork to the start of the principles.
+     The remaining 55 rows are the actual paper behind their text. */
+  --paper-lap: 7.597vw;
   inset: auto 0 calc(-1 * var(--paper-lap));
-  height: calc(59.25% + var(--paper-lap));
-  background: url("assets/reference-watercolor-edge.webp") center bottom / 100% 100% no-repeat;
-  mask-image: linear-gradient(black calc(100% - var(--paper-lap)), transparent);
+  height: 35.359vw;
+  --art-layer: url("assets/reference-watercolor-edge.webp?v=0ffcf83a6cf4");
+  background: var(--art-layer) center bottom / 100% 100% no-repeat;
+  mask-image: linear-gradient(black 93%, transparent);
 }
+.home-scene .scene-top::after { z-index: 3; }
+.home-scene .scene-wash { --art-layer: url("assets/reference-watercolor-wash.webp?v=f0ef4b817280"); z-index: 1; }
+.home-scene .scene-person.portrait-wrap { position: absolute; inset: 0; z-index: 2; }
 .home-scene .portrait-wrap {
   position: relative;
   width: var(--scene-width);
@@ -172,7 +179,7 @@ body.concept-mari #app:has(.home-scene) {
   height: auto;
   display: block;
 }
-.home-scene .portrait-wrap::after {
+.home-scene .scene-backdrop::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -193,6 +200,13 @@ body.concept-mari #app:has(.home-scene) {
   mask-image: linear-gradient(transparent, black 28px);
 }
 @media (min-width: 1600px) {
+  .home-scene .scene-top::after, .home-scene .scene-wash {
+    --paper-lap: 121.55px;
+    height: 565.74px;
+    border-inline: calc((100vw - 1600px) / 2) solid transparent;
+    border-image: var(--art-layer) 0 1 fill / 0 calc((100vw - 1600px) / 2) stretch;
+    background: none;
+  }
   .home-scene .scene-top {
     background: url("assets/reference-paper-margins.webp") center top / 4800px 100% no-repeat;
   }
@@ -224,7 +238,7 @@ body.concept-mari #HM01 .mari-hero {
 body.concept-mari #HM01 .principles {
   width: var(--scene-width);
   margin-inline: auto;
-  padding-top: clamp(7px, 1.05vw, 17px);
+  padding-top: clamp(2px, .28vw, 5px);
   color: var(--watercolor-ink);
 }
 body.concept-mari #HM01 .principles li { border-color: #ac817558; }
@@ -233,13 +247,14 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   body.concept-mari #HM01 .hero-story { translate: 0 -5.5px; }
 }
 @media (min-width: 901px) {
-  .home-scene .portrait-wrap {
-    background: url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top center / 100% auto no-repeat;
+  .home-scene .scene-backdrop {
+    background: url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top right / 98% auto no-repeat,
+                url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top center / 100% auto no-repeat;
   }
   .home-scene .portrait-wrap img {
-    width: 87%;
+    width: 98%;
     margin-left: auto;
-    mask-image: linear-gradient(90deg, transparent, black 22%);
+    mask: url("assets/mobile-portrait-mask-v2.png") top center / 100% 100% no-repeat;
   }
   html:not([data-compact-header]) body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
     align-self: flex-start;
@@ -271,10 +286,7 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   .home-scene {
     --copy-light: linear-gradient(90deg, #fcf2eadb 32%, #fcf2eace 47%, #fcf2ea8a 56%, transparent 67%);
   }
-  .home-scene .portrait-wrap {
-    z-index: 1;
-  }
-  .home-scene .portrait-wrap::before {
+  .home-scene .scene-backdrop::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -284,9 +296,6 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   .home-scene .portrait-wrap img {
     position: relative;
     mask: url("assets/mobile-portrait-mask-v2.png") top center / 100% 100% no-repeat;
-  }
-  .home-scene .scene-top::after {
-    z-index: 2;
   }
   .home-scene .portrait-wrap::after { content: none; }
   .home-scene .scene-paper {
@@ -475,7 +484,7 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
   .home-scene .scene-top {
     flex-basis: var(--compact-art-height, var(--narrow-photo-height));
   }
-  .home-scene .portrait-wrap {
+  .home-scene .scene-top .portrait-wrap {
     width: var(--portrait-paint-width);
     left: var(--portrait-paint-position);
     transform: translateX(calc(-1 * var(--portrait-paint-position)));
