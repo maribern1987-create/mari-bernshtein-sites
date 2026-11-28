@@ -159,7 +159,7 @@ body.concept-mari #app:has(.home-scene) {
   --paper-lap: 7.597vw;
   inset: auto 0 calc(-1 * var(--paper-lap));
   height: 35.359vw;
-  --art-layer: url("assets/reference-watercolor-edge.webp?v=0ffcf83a6cf4");
+  --art-layer: url("assets/reference-watercolor-edge.webp?v=e93e9a9580cb");
   background: var(--art-layer) center bottom / 100% 100% no-repeat;
   mask-image: linear-gradient(black 93%, transparent);
 }
@@ -443,10 +443,19 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
   }
 }
 @media (width < 450px) {
+  body.concept-mari #app:has(.home-scene)::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: calc(var(--principles-end) + 48px);
+    background: linear-gradient(#fcf2ebbd, #fcf2ebe6 calc(100% - 48px), transparent);
+    pointer-events: none;
+    z-index: -1;
+  }
   body.concept-mari #HM01 .mari-hero {
     display: block;
     min-height: 0;
-    padding: calc(var(--narrow-photo-height) - 6px) 0 0;
+    padding: 0;
     overflow: visible;
   }
   body.concept-mari #HM01 .hero-story {
@@ -454,7 +463,42 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
     position: relative;
     order: initial;
     max-width: 720px;
-    padding: 20px var(--mari-pad) 28px;
+    padding: 20px var(--mari-pad) 18px;
+  }
+  body.concept-mari #app:has(.home-scene) .home-scene {
+    --portrait-paint-width: 185%;
+    --copy-light: linear-gradient(transparent, transparent);
+    position: relative;
+    inset: auto;
+    display: block;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    z-index: 0;
+  }
+  .home-scene .scene-top {
+    height: 103vw;
+    clip-path: inset(0 0 -8vw);
+  }
+  body.concept-mari #HM01 .scene-top .portrait-wrap {
+    position: absolute;
+    inset: 0 0 auto auto;
+    width: var(--portrait-paint-width);
+    margin: 0;
+    height: 100%;
+  }
+  body.concept-mari #HM01 .scene-top .scene-person { z-index: 2; }
+  .home-scene::before {
+    inset: auto 0 calc(100% - 21px);
+    height: min(46vw, 190px);
+    background-position: right bottom;
+    mask-image: linear-gradient(transparent, black 88%);
+  }
+  .home-scene .scene-paper { display: none; }
+  body.concept-mari #HM01 .principles {
+    position: relative;
+    z-index: 1;
+    padding-top: 10px;
   }
 }
 @media (min-width: 450px) and (max-width: 680px) {
