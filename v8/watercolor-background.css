@@ -243,7 +243,7 @@ body.concept-mari #HM01 .principles {
 }
 body.concept-mari #HM01 .principles li { border-color: #ac817558; }
 .principles .compact-break { display: none; }
-@media (max-width: 480px), (width > 760px) and (max-width: 1210px) {
+@media (max-width: 488px), (width > 760px) and (max-width: 1240px) {
   .principles .compact-break { display: initial; }
   .principles .regular-break { display: none; }
 }
@@ -404,7 +404,26 @@ body.concept-mari #app:has(.home-scene) .site-header :is(.header-book, #menu-tog
 }
 body.concept-mari #app:has(.home-scene) .site-header #menu-toggle {
   grid-area: 1 / 3;
-  background-color: #fcf3ebef;
+  background-color: var(--menu-surface, #fcf3ebef);
+}
+.site-header #menu-toggle[aria-expanded="true"],
+.site-header #menu-toggle:active {
+  --menu-surface: #f0dbd0;
+  background-color: var(--menu-surface);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .site-header #menu-toggle {
+    transition: transform .2s var(--ease-out), box-shadow .2s var(--ease-out), background-color .2s var(--ease-out);
+  }
+  @media (hover: hover) {
+    .site-header #menu-toggle:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 3px 9px #3b233827;
+    }
+  }
+  .site-header #menu-toggle:active {
+    transform: scale(.97);
+  }
 }
 body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
   display: flex;
