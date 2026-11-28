@@ -240,8 +240,51 @@ body.concept-mari #HM01 .principles {
   margin-inline: auto;
   padding-top: clamp(2px, .28vw, 5px);
   color: var(--watercolor-ink);
+  grid-template-columns: repeat(4, max-content);
+  justify-content: space-between;
+  gap: 18px 0;
 }
-body.concept-mari #HM01 .principles li { border-color: #ac817558; }
+body.concept-mari #HM01 .principles li {
+  gap: 10px;
+  padding-inline: 14px 0;
+  border-color: #ac817558;
+}
+body.concept-mari #HM01 .principles svg { width: 30px; }
+@media (width < 1360px) {
+  body.concept-mari #HM01 .principles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.concept-mari #HM01 .principles li:nth-child(odd) {
+    border-left: 0;
+    padding-left: 0;
+  }
+}
+@media (width < 680px) {
+  body.concept-mari #HM01 .principles {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  body.concept-mari #HM01 .principles li {
+    border-left: 0;
+    padding-inline: 0;
+  }
+  body.concept-mari #HM01 .principles span {
+    font-size: clamp(12px, 3.5vw, 14px);
+  }
+}
+@media (width < 360px) {
+  body.concept-mari #HM01 .principles li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 4px 7px;
+  }
+  body.concept-mari #HM01 .principles li > div { display: contents; }
+  body.concept-mari #HM01 .principles li svg { width: 22px; }
+  body.concept-mari #HM01 .principles li span {
+    grid-column: 1 / -1;
+    margin-top: 0;
+  }
+}
 @media (min-width: 450px) {
   /* The signature ends 11px above the header edge. Share that space with the lower gap. */
   body.concept-mari #HM01 .hero-story { translate: 0 -5.5px; }
