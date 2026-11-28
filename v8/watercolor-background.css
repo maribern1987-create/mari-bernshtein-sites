@@ -247,12 +247,16 @@ body.concept-mari #HM01 .principles li { border-color: #ac817558; }
   body.concept-mari #HM01 .hero-story { translate: 0 -5.5px; }
 }
 @media (min-width: 901px) {
+  .home-scene {
+    /* Approved seated crop, shared by the photograph and its backdrop. */
+    --desktop-portrait-width: 87%;
+  }
   .home-scene .scene-backdrop {
-    background: url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top right / 98% auto no-repeat,
+    background: url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top right / var(--desktop-portrait-width) auto no-repeat,
                 url("assets/hero-mari-20261127.webp?v=c2f488f79e5d") top center / 100% auto no-repeat;
   }
   .home-scene .portrait-wrap img {
-    width: 98%;
+    width: var(--desktop-portrait-width);
     margin-left: auto;
     mask: url("assets/mobile-portrait-mask-v2.png") top center / 100% 100% no-repeat;
   }
