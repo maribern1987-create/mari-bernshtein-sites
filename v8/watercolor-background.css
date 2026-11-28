@@ -700,16 +700,13 @@ html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header #
   }
   .mari-signature .header-profession > span { display: none; }
 }
-@container pinned-brand (max-width: 214px) {
-  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .logo,
-  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
-    grid-column: 1 / -1;
-    justify-self: center;
-  }
+@container pinned-brand (max-width: 262px) {
   html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .logo {
-    width: min(100%, 112px);
+    grid-column: 1 / -1;
+    justify-self: start;
+    width: min(100%, var(--signature-width));
   }
   html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
-    font-size: 14px;
+    display: none;
   }
 }
