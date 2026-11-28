@@ -651,20 +651,22 @@ html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .
 }
 html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature {
   grid-area: 1 / 1;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: min(var(--signature-width), 56%) minmax(0, 1fr);
   align-items: center;
   width: auto;
-  gap: 10px;
+  gap: 0 8px;
   margin: 0;
   container: pinned-brand / inline-size;
   min-width: 0;
 }
 html[data-compact-header] body.concept-mari #app:has(.home-scene) .mari-signature .logo {
+  grid-area: auto;
   min-width: 0;
-  flex: 0 1 var(--signature-width);
-  width: var(--signature-width);
+  width: 100%;
 }
 html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+  grid-area: auto;
   width: max-content;
   flex: none;
   flex-wrap: nowrap;
@@ -691,5 +693,23 @@ html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header #
   html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header :is(.header-book, #menu-toggle) { font-size: 13px; padding-inline: 8px; }
 }
 @container pinned-brand (max-width: 392px) {
-  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession { display: none; }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+    justify-self: center;
+    font-size: clamp(15px, 6cqi, 19px);
+    line-height: 1.1;
+  }
+  .mari-signature .header-profession > span { display: none; }
+}
+@container pinned-brand (max-width: 214px) {
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .logo,
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+    grid-column: 1 / -1;
+    justify-self: center;
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .logo {
+    width: min(100%, 112px);
+  }
+  html[data-compact-header] body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+    font-size: 14px;
+  }
 }
