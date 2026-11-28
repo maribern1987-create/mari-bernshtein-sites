@@ -465,14 +465,16 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
     width: 100%;
   }
   body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
-    align-self: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     width: 100%;
-    white-space: normal;
-    text-align: center;
-    font-size: clamp(8px, 3.95cqi, 10px);
+    white-space: nowrap;
+    font-size: 4.45cqi;
+    letter-spacing: .015em;
+    gap: .15em;
     line-height: 1.2;
+  }
+  html:not([data-compact-header]) body.concept-mari #app:has(.home-scene) .site-header .mari-signature .header-profession {
+    justify-content: space-between;
   }
   body.concept-mari #app:has(.home-scene) .site-header .header-book {
     grid-area: 1 / 2;
@@ -484,6 +486,10 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
   }
 }
 @media (width < 450px) {
+  html:not([data-compact-header]) body.concept-mari #app:has(.home-scene) .site-header .header-inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: 8px;
+  }
   body.concept-mari #app:has(.home-scene)::before {
     content: "";
     position: absolute;
@@ -549,6 +555,17 @@ body.concept-mari #app:has(.home-scene) .header-profession [aria-hidden] {
   }
   body.concept-mari #app:has(.home-scene) .site-header .mari-signature { grid-area: 1 / 1; }
   body.concept-mari #app:has(.home-scene) .site-header #menu-toggle { grid-area: 1 / 3; }
+}
+
+@media (max-width: 360px) {
+  html:not([data-compact-header]) body.concept-mari #app:has(.home-scene) .site-header .header-inner {
+    padding-inline: 8px;
+    column-gap: 7px;
+  }
+  html:not([data-compact-header]) body.concept-mari #app:has(.home-scene) .site-header :is(.header-book, #menu-toggle) {
+    padding-inline: 7px;
+    font-size: 13px;
+  }
 }
 
 @media (min-width: 450px) and (max-width: 780px) {
