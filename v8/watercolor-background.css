@@ -243,21 +243,21 @@ body.concept-mari #HM01 .principles {
 }
 body.concept-mari #HM01 .principles li { border-color: #ac817558; }
 .principles .compact-break { display: none; }
-@media (width < 390px), (width > 760px) and (max-width: 1100px) {
+@media (max-width: 480px), (width > 760px) and (max-width: 1210px) {
   .principles .compact-break { display: initial; }
   .principles .regular-break { display: none; }
 }
 @media (max-width: 440px), (width > 760px) and (max-width: 1100px) {
-  body.concept-mari #HM01 .principles li { gap: 6px; padding-inline: 6px; }
+  body.concept-mari #HM01 .principles li { gap: 6px; padding-inline: 6px 2px; }
   body.concept-mari #HM01 .principles svg { width: 24px; }
 }
 @media (max-width: 440px) {
   body.concept-mari #HM01 .principles { padding-inline: 10px; }
   body.concept-mari #HM01 .principles li:nth-child(odd) { padding-inline: 0; }
 }
-@media (max-width: 350px) {
+@media (max-width: 360px) {
   body.concept-mari #HM01 .principles { padding-inline: 8px; }
-  body.concept-mari #HM01 .principles li { gap: 4px; padding-right: 0; }
+  body.concept-mari #HM01 .principles li { gap: 3px; padding-inline: 3px 0; }
   body.concept-mari #HM01 .principles svg { width: 20px; }
 }
 @media (min-width: 450px) {
